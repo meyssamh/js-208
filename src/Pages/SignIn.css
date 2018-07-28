@@ -1,0 +1,15 @@
+body{
+    background-color: #e4e5e6;
+}
+.col-5{
+    border: solid 1px #cfd8dc;
+    padding: 20px;
+    background-color: white;
+    margin: 170px auto;
+}
+input {
+    font-family: FontAwesome, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
