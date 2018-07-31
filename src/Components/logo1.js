@@ -1,0 +1,4 @@
+import React from 'react';
+import Logo1 from '../Asset/logo1.svg';
+
+export default Logo1;

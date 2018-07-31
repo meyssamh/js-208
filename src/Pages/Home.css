@@ -1,11 +1,17 @@
-body{
-    background-color: #e4e5e6;
+div .main{
+    background: url('../Asset/5.1.jpg') no-repeat;
+    background-size: contain;
+    height: 730px;
 }
-img{
-    width : 300px;
-    margin-left : 520px;
-    margin-top : 50px;
-    margin-bottom : 30px;
+div .sign_in{
+    background: url('../Asset/8.jpg') no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+div .sign_up{
+    background: url('../Asset/8.jpg') no-repeat;
+    background-size: cover;
+    height: 800px;
 }
 h1{
     text-align : center;

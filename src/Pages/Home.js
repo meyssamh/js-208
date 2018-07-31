@@ -1,31 +1,69 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 import logo from './../logo.svg';
-import {Button} from "../Components/Components";
+import {Button, Container, Header} from "../Components/Components";
 import './Home.css';
+import {Link} from "react-router-dom";
+import Logo from '../Components/logo';
 
 class Home extends React.Component {
 
-    signIn = () => {
-        return window.location.href = './SignIn';
-    };
-
-    signUp = () => {
-        return window.location.href = './SignUp';
-    };
-
     render() {
         return  <React.Fragment>
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">Welcome to Dialogue</h1>
-                    </header>
-                    <Button style={{marginLeft : 300, marginTop : 30}} type={'success'} onClick={this.signIn}>
-                        I am already a registered user!
-                    </Button>
-                    <Button style={{marginLeft : 300, marginTop : 30}} type={'danger'} onClick={this.signUp}>
-                        I am not registered!
-                    </Button>
+                    <div className={'main'}>
+                        <Header className={'dark'}>
+                            <Container>
+                                <img src={Logo} style={{height: 40}} className={'App-logo'} alt={'logo'}/>
+                                <div>
+                                    <ul className={'navbar-nav'}>
+                                        <li className={'nav-item'}>
+                                            <Link to={'/SignIn'}>
+                                                <Button type={'outline-success'} children={'Log in'}/>
+                                            </Link>
+                                            &nbsp;
+                                            <Link to={'/SignUp'}>
+                                                <Button type={'outline-danger'} children={'Sign up'}/>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Container>
+                        </Header>
+                        <div className={'home'}>
+                            <h1 style={{marginTop : 50, fontSize : 70, color : 'black'}} className={'App-title'}>
+                                Welcome to Dialogue</h1>
+                        </div>
+                    </div>
+                    <footer>
+                        <div className="ui inverted vertical footer segment">
+                            <div className="ui container">
+                                <div className="ui stackable inverted divided equal height stackable grid">
+                                    <div className="three wide column">
+                                        <h4 className="ui inverted header">About</h4>
+                                        <div className="ui inverted link list">
+                                            <a href="#" className="item">Sitemap</a>
+                                            <a href="#" className="item">Contact Us</a>
+                                            <a href="#" className="item">Religious Ceremonies</a>
+                                            <a href="#" className="item">Gazebo Plans</a>
+                                        </div>
+                                    </div>
+                                    <div className="three wide column">
+                                        <h4 className="ui inverted header">Services</h4>
+                                        <div className="ui inverted link list">
+                                            <a href="#" className="item">Banana Pre-Order</a>
+                                            <a href="#" className="item">DNA FAQ</a>
+                                            <a href="#" className="item">How To Access</a>
+                                            <a href="#" className="item">Favorite X-Men</a>
+                                        </div>
+                                    </div>
+                                    <div className="seven wide column">
+                                        <h4 className="ui inverted header">Footer Header</h4>
+                                        <p>Extra space for a call to action inside the footer that could help re-engage
+                                            users.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
                 </React.Fragment>;
     }
 }
