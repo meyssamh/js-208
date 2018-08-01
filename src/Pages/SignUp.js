@@ -1,11 +1,24 @@
 import React from "react";
-import './SignIn.css';
+import './Main.css';
 import {Button, Col, Container, Header} from "../Components/Components";
 import {Link} from "react-router-dom";
-import Logo from "../Components/logo1";
+import Logo from "../Components/Logo1";
+import {Mail, Password, Password2, Username} from "../Components/Information";
+import {Footer} from "../Components/Footer";
 
 
 class SignUp extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            email       : '',
+            username    : '',
+            password1   : '',
+            password2   : ''
+        };
+    };
+
     render() {
         return  <React.Fragment>
                     <div className={'sign_up'}>
@@ -20,10 +33,6 @@ class SignUp extends React.Component {
                                             <Link to={'./SignIn'}>
                                                 <Button type={'outline-success'} children={'Log in'}/>
                                             </Link>
-                                            &nbsp;
-                                            <Link to={'./SignUp'}>
-                                                <Button type={'outline-danger'} children={'Sign up'}/>
-                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -34,26 +43,15 @@ class SignUp extends React.Component {
                                 <h3>Sign up</h3>
                                 <small>or <Link to={'./SignIn'}>you have already an account</Link></small>
                                 <br/><br/>
-                                <div className="form-group">
-                                    <input type="email" className="form-control" id="InputEmail"
-                                           aria-describedby="emailHelp" placeholder="&#xf0e0; Email"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="text" className="form-control" id="InputUsername"
-                                           aria-describedby="emailHelp" placeholder="&#xf007; Username"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="password" className="form-control" id="InputPassword1"
-                                           placeholder="&#xf023; Password"/>
-                                </div>
-                                <div className="form-group">
-                                    <input type="password" className="form-control" id="InputPassword2"
-                                           placeholder="&#xf023; Confirmation Password"/>
-                                </div>
+                                <Mail/>
+                                <Username/>
+                                <Password/>
+                                <Password2/>
                                 <button type="submit" className="btn btn-primary">Sign in</button>
                             </form>
                         </Col>
                     </div>
+                    <Footer/>
                 </React.Fragment>;
     }
 }

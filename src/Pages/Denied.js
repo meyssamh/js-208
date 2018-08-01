@@ -1,5 +1,4 @@
 import React from "react";
-import './SignIn.css';
 import {Col} from "../Components/Components";
 import {Link} from "react-router-dom";
 

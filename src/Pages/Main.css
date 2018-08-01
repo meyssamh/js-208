@@ -1,0 +1,38 @@
+div .main {
+    background: url('../Asset/5.1.jpg') no-repeat;
+    background-size: cover;
+    height: 729px;
+}
+div .sign_in {
+    background: url('../Asset/8.jpg') no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+div .sign_up {
+    background: url('../Asset/8.jpg') no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+h1 {
+    text-align : center;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor : pointer;
+}
+.col-5 {
+    border: solid 1px #cfd8dc;
+    padding: 20px;
+    background-color: white;
+    margin: 170px auto;
+}
+footer {
+    background-color: black;
+    color: white;
+}
+.col-4 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+#border_right {
+    border-right: 1px solid darkgray;
+}

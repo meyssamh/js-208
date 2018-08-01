@@ -1,12 +1,12 @@
 import React from 'react';
 
 export const Row = (props) => {
-    const Class = 'row' +(props.className !== undefined ? ` ${props.className}` : '');
+    const Class = 'row' +(props.className !== undefined ? `${props.className}` : '');
     return <div {...props} className={Class} >{props.children}</div>
 };
 
 export const Container = (props) => {
-    const Class = 'container' +(props.className !== undefined ? ` ${props.className}` : '');
+    const Class = 'container' +(props.className !== undefined ? `${props.className}` : '');
     return <div {...props} className={Class} >{props.children}</div>
 };
 
@@ -27,6 +27,9 @@ export const Header = (props) => {
     return <nav {...props} className={Class} >{props.children}</nav>
 };
 
-export const Footer = (props) => {
-
+export const Icon = (props) => {
+    const {type, size, ...other} = props;
+    const Class = (type !== undefined ? `fa fa-${type}` : '');
+    const Style = (size !== undefined ? {fontSize : size} : {fontSize : 18});
+    return <i {...other} className={Class} style={Style}></i>
 };
