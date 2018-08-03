@@ -31,9 +31,9 @@ export const Footer = () => {
                             </div>
                         </Col>
                         <Col size={4}>
-                            <h4>Information</h4>
+                            <h4>Downloads</h4>
                             <div style={{marginLeft : 20}}>
-                                <Link to={'/Information'} children={'Information'}/>
+                                <Link to={'/Downloads'} children={'Downloads'}/>
 
                             </div>
                         </Col>

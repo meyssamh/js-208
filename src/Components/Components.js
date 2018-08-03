@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 export const Row = (props) => {
     const Class = 'row' +(props.className !== undefined ? `${props.className}` : '');
@@ -31,5 +32,42 @@ export const Icon = (props) => {
     const {type, size, ...other} = props;
     const Class = (type !== undefined ? `fa fa-${type}` : '');
     const Style = (size !== undefined ? {fontSize : size} : {fontSize : 18});
-    return <i {...other} className={Class} style={Style}></i>
+    return <i {...other} className={Class} style={Style}/>
+};
+
+export const Info = (props) => {
+    const {inputType, iconType, iconSize, id, place, ...other} = props;
+    return  <div className={'form-group input-group'}>
+                <div className={'input-group-prepend'}>
+                    <span className={'input-group-text'}>
+                        <Icon type={iconType} size={iconSize}/>
+                    </span>
+                </div>
+                <input type={inputType} {...other} id={id} className={'form-control'} placeholder={place} required/>
+            </div>
+};
+
+export const Nav = (props) => {
+    const {darkNav, src, button1Type, button2Type, hidButton1, hidButton2, hidLink, hidLogo, ...other} = props;
+    return  <Header {...other} className={darkNav} >
+                <Container>
+                    <Link to={'/'} hidden={hidLink}>
+                        <img src={src} style={{height: 40}} className={'App-logo'} alt={'logo'}/>
+                    </Link>
+                    <img src={src} style={{height: 40}} className={'App-logo'} alt={'logo'} hidden={hidLogo}/>
+                    <div>
+                        <ul className={'navbar-nav'}>
+                            <li className={'nav-item'}>
+                                <Link to={'/SignIn'}>
+                                    <Button type={button1Type} children={'Log in'} hidden={hidButton1}/>
+                                </Link>
+                                &nbsp;
+                                <Link to={'/SignUp'}>
+                                    <Button type={button2Type} children={'Sign up'} hidden={hidButton2}/>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </Container>
+            </Header>
 };

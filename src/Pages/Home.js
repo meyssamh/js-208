@@ -1,8 +1,8 @@
 import React from "react";
-import {Button, Container, Header} from "../Components/Components";
+import {Nav} from "../Components/Components";
 import './Main.css';
-import {Link} from "react-router-dom";
 import Logo from '../Components/Logo';
+import Logo1 from '../Components/Logo1';
 import {Footer} from "../Components/Footer";
 
 class Home extends React.Component {
@@ -10,42 +10,12 @@ class Home extends React.Component {
     render() {
         return  <React.Fragment>
                     <div className={'main'}>
-                        <Header className={'dark'} >
-                            <Container>
-                                <img src={Logo} style={{height: 40}} className={'App-logo'} alt={'logo'}/>
-                                <div>
-                                    <ul className={'navbar-nav'}>
-                                        <li className={'nav-item'}>
-                                            <Link to={'/SignIn'}>
-                                                <Button type={'outline-success'} children={'Log in'}/>
-                                            </Link>
-                                            &nbsp;
-                                            <Link to={'/SignUp'}>
-                                                <Button type={'outline-danger'} children={'Sign up'}/>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </Container>
-                        </Header>
-                        <Header className={'dark bg-dark fixed-top'} hidden>
-                            <Container>
-                                <img src={Logo} style={{height: 40}} className={'App-logo'} alt={'logo'}/>
-                                <div>
-                                    <ul className={'navbar-nav'}>
-                                        <li className={'nav-item'}>
-                                            <Link to={'/SignIn'}>
-                                                <Button type={'outline-success'} children={'Log in'}/>
-                                            </Link>
-                                            &nbsp;
-                                            <Link to={'/SignUp'}>
-                                                <Button type={'outline-danger'} children={'Sign up'}/>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </Container>
-                        </Header>
+                        <Nav darkNav={''} src={Logo} button1Type={'outline-success'} hidButton1={false}
+                             button2Type={'outline-danger'} hidButton2={false} hidLink={true}
+                             hidLogo={false} hidden={false}/>
+                        <Nav darkNav={''} src={Logo1} button1Type={'outline-success'} hidButton1={false}
+                             button2Type={'outline-danger'} hidButton2={false} hidLink={true}
+                             hidLogo={false} hidden={true}/>
                         <div className={'home'}>
                             <h1 style={{marginTop : 50, fontSize : 70, color : 'black'}} className={'App-title'}>
                                 Welcome to Dialogue</h1>
