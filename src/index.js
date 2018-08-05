@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Main from './Pages/Main';
 import registerServiceWorker from './registerServiceWorker';
+import {ThemeProvider} from "@livechat/ui-kit";
 
-ReactDOM.render(<BrowserRouter><Main/></BrowserRouter>, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter><ThemeProvider><Main/></ThemeProvider></BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();

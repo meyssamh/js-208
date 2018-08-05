@@ -29,7 +29,7 @@ footer {
     background-color: black;
     color: white;
 }
-.col-4 {
+footer .col-4{
     margin-top: 50px;
     margin-bottom: 30px;
 }

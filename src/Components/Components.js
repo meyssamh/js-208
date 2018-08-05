@@ -43,7 +43,8 @@ export const Info = (props) => {
                         <Icon type={iconType} size={iconSize}/>
                     </span>
                 </div>
-                <input type={inputType} {...other} id={id} className={'form-control'} placeholder={place} required/>
+                <input type={inputType} {...other} id={id} className={'form-control'} placeholder={place}
+                       required={true}/>
             </div>
 };
 

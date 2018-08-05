@@ -15,7 +15,8 @@ class SignUp extends React.Component {
             username    : '',
             password1   : '',
             password2   : '',
-            err         : true
+            err         : true,
+            nav1Hidden  : true
         };
     };
 
@@ -26,17 +27,40 @@ class SignUp extends React.Component {
         });
     };
 
-    sign = (e) =>{
-        e.preventDefault();
-        if(this.state.password1 !== this.state.password2){
-            this.setState(prevState => {
-                return {
-                    err : false
+    sign = (e) => {
+        localStorage.setItem('username', this.state.username);
+        localStorage.setItem('password', this.state.password1);
+        if (this.state.password1 !== this.state.password2) {
+            this.setState({
+                    err: false
                 }
-            });
-        } else {
-            this.props.history.push('/ChatRoom')
+            );
+            e.preventDefault();
+        } else if ((this.state.username.length && this.state.password1.length) > 1) {
+            this.props.history.push('/ChatRoom');
         }
+    };
+
+    componentDidMount() {
+        window.addEventListener('scroll', () => {
+            let supportPageOffset = window.pageXOffset !== undefined;
+            let Compact = ((document.compatMode || '') === 'Compact');
+            let scroll = {
+                y: supportPageOffset ? window.pageYOffset :
+                    Compact ? document.documentElement.scrollTop :
+                        document.body.scrollTop
+            };
+
+            if(scroll.y > 50){
+                this.setState({
+                    nav1Hidden : false
+                });
+            } if(scroll.y < 50) {
+                this.setState({
+                    nav1Hidden: true
+                });
+            }
+        });
     };
 
     render() {
@@ -45,6 +69,9 @@ class SignUp extends React.Component {
                         <Nav darkNav={''} src={Logo} button1Type={'outline-success'} hidButton1={false}
                              button2Type={'outline-danger'} hidButton2={true} hidLink={false}
                              hidLogo={true}/>
+                        <Nav darkNav={'black bg-dark fixed-top'} src={Logo} button1Type={'outline-success'}
+                             hidButton1={false} button2Type={'outline-danger'} hidButton2={true} hidLink={false}
+                             hidLogo={true} hidden={this.state.nav1Hidden}/>
                         <Col size={5}>
                             <form>
                                 <h3>Sign up</h3>
@@ -66,7 +93,7 @@ class SignUp extends React.Component {
                                     ERROR: Your password and confirmation password do not match!
                                 </div>
                                 <br/>
-                                <Button type={'primary'} children={'Sign up'} onChange={this.sign}/>
+                                <Button type={'primary'} children={'Sign up'} onClick={this.sign}/>
                             </form>
                         </Col>
                     </div>
