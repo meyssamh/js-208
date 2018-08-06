@@ -55,7 +55,7 @@ class SignUp extends React.Component {
                 this.setState({
                     nav1Hidden : false
                 });
-            } if(scroll.y < 50) {
+            } if(scroll.y <= 50) {
                 this.setState({
                     nav1Hidden: true
                 });

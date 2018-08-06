@@ -6,6 +6,11 @@ export const Row = (props) => {
     return <div {...props} className={Class} >{props.children}</div>
 };
 
+export const Row1 = (props) => {
+    const Class = 'row' +(props.className !== undefined ? `${props.className}` : '');
+    return <div {...props} className={Class} >{props.children}</div>
+};
+
 export const Container = (props) => {
     const Class = 'container' +(props.className !== undefined ? `${props.className}` : '');
     return <div {...props} className={Class} >{props.children}</div>
