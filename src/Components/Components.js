@@ -1,12 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-export const Row = (props) => {
-    const Class = 'row' +(props.className !== undefined ? `${props.className}` : '');
-    return <div {...props} className={Class} >{props.children}</div>
-};
-
-export const Row1 = (props) => {
+export const MyRow = (props) => {
     const Class = 'row' +(props.className !== undefined ? `${props.className}` : '');
     return <div {...props} className={Class} >{props.children}</div>
 };

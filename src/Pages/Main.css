@@ -36,3 +36,6 @@ footer .col-4{
 #border_right {
     border-right: 1px solid darkgray;
 }
+.separator{
+    border-bottom: 1px solid #e4e6e6;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import {Col, Container, Row} from "./Components";
+import {Col, Container, MyRow} from "./Components";
 import {Link} from "react-router-dom";
 
 export const Footer = () => {
     return  <footer className={'footer'}>
                 <Container style={{marginBottom : 50}}>
-                    <Row>
+                    <MyRow>
                         <Col size={4} id={'border_right'}>
                             <h4>About</h4>
                             <div style={{marginLeft : 20}}>
@@ -37,7 +37,7 @@ export const Footer = () => {
 
                             </div>
                         </Col>
-                    </Row>
+                    </MyRow>
                 </Container>
                 <small style={{marginLeft : 470}}>
                     This Website is copyrighted by Dialogue Communications LTD.
