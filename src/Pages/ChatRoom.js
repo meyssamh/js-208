@@ -1,10 +1,12 @@
 import React from "react";
 import {Col, MyRow} from "../Components/Components";
-import {MainUser, Message, User} from "../Components/ChatComponents";
+import {MainUser, Newmessage, User} from "../Components/ChatComponents";
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
+import {M1} from "../Components/M1";
+// import {M1} from "../Components/M1";
 
 
 class ChatRoom extends React.Component {
@@ -73,24 +75,23 @@ class ChatRoom extends React.Component {
         }, () => {
             document.removeEventListener('click', this.closeMenu);
         });
-    }
+    };
 
     render() {
         return  <React.Fragment>
                     <MyRow style={{maxWidth : 1381}}>
                         <Col size={4} style={{paddingRight : 0, borderRight : 'solid 1px #e4e6e6'}}>
                             <header style={{backgroundColor : '#eeeeee', height : 60}}>
-                                <MainUser rowClick={'profile'} titleChild={this.state.username} chatClick={'Chat'}
-                                          moreClick={'more'}/>
+                                <MainUser titleChild={this.state.username}/>
                             </header>
                             <div style={{height : 602, borderBottom : 'solid 1px #e4e6e6'}}>
-                                <User chatHistory={'chat'} img={Bill} children={'Bill Gates'} aria={this.state.aria1}
+                                <User img={Bill} children={'Bill Gates'} aria={this.state.aria1}
                                       dropdownShow={this.state.class1} menuShow={this.state.menu1}
                                       expandClick={this.drop1}/>
-                                <User chatHistory={'chat'} img={Albert} children={'Albert Einstein'}
+                                <User img={Albert} children={'Albert Einstein'}
                                       aria={this.state.aria3} dropdownShow={this.state.class2}
                                       menuShow={this.state.menu2} expandClick={this.drop2}/>
-                                <User chatHistory={'chat'} img={Robot} children={'Terminator'} aria={this.state.aria3}
+                                <User img={Robot} children={'Terminator'} aria={this.state.aria3}
                                       dropdownShow={this.state.class3} menuShow={this.state.menu3}
                                       expandClick={this.drop3}/>
                             </div>
@@ -101,10 +102,10 @@ class ChatRoom extends React.Component {
                             </header>
                             <div style={{height : 602}}>
                                 <div style={{height : 550}}>
-
+                                    <M1/>
                                 </div>
                                 <div>
-                                    <Message click={'onClick component function!'}/>
+                                    <Newmessage/>
                                 </div>
                             </div>
                         </Col>

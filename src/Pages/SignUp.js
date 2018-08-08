@@ -63,6 +63,28 @@ class SignUp extends React.Component {
         });
     };
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', () => {
+            let supportPageOffset = window.pageXOffset !== undefined;
+            let Compact = ((document.compatMode || '') === 'Compact');
+            let scroll = {
+                y: supportPageOffset ? window.pageYOffset :
+                    Compact ? document.documentElement.scrollTop :
+                        document.body.scrollTop
+            };
+
+            if(scroll.y > 50){
+                this.setState({
+                    nav1Hidden : false
+                });
+            } if(scroll.y <= 50) {
+                this.setState({
+                    nav1Hidden: true
+                });
+            }
+        });
+    };
+
     render() {
         return  <React.Fragment>
                     <div className={'sign_up'}>

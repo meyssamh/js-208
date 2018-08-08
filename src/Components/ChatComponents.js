@@ -65,7 +65,7 @@ export const User = (props) => {
             </React.Fragment>
 };
 
-export const Message = (props) => {
+export const Newmessage = (props) => {
     const {click, ...other} = props;
     return <TextComposer>
                 <Row align="center">

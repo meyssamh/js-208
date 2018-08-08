@@ -12,10 +12,32 @@ class Home extends React.Component {
         this.state = {
             nav1Hidden : true
         }
-    }
+    };
 
     componentDidMount() {
         window.addEventListener('scroll', () => {
+            let supportPageOffset = window.pageXOffset !== undefined;
+            let Compact = ((document.compatMode || '') === 'Compact');
+            let scroll = {
+                y: supportPageOffset ? window.pageYOffset :
+                    Compact ? document.documentElement.scrollTop :
+                        document.body.scrollTop
+            };
+
+            if(scroll.y > 50){
+                this.setState({
+                    nav1Hidden : false
+                });
+            } if(scroll.y <= 50) {
+                this.setState({
+                    nav1Hidden: true
+                });
+            }
+        });
+    };
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', () => {
             let supportPageOffset = window.pageXOffset !== undefined;
             let Compact = ((document.compatMode || '') === 'Compact');
             let scroll = {
