@@ -1,12 +1,11 @@
 import React from "react";
 import {Col, MyRow} from "../Components/Components";
-import {MainUser, Newmessage, User} from "../Components/ChatComponents";
+import {Chater, MainUser, Newmessage, Read, User} from "../Components/ChatComponents";
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
 import {M1} from "../Components/M1";
-// import {M1} from "../Components/M1";
 
 
 class ChatRoom extends React.Component {
@@ -23,7 +22,8 @@ class ChatRoom extends React.Component {
             aria3       : false,
             class3      : 'dropdown',
             menu3       : 'dropdown-menu',
-            message     : ''
+            message     : '',
+            messages    : {}
         };
         this.drop1      = this.drop1.bind(this);
         this.drop2      = this.drop2.bind(this);
@@ -77,6 +77,21 @@ class ChatRoom extends React.Component {
         });
     };
 
+    handleChange = () => {
+        this.setState({
+
+        });
+    };
+
+    add = (e) =>{
+        console.log('add');
+        e.preventDefault();
+        this.setState({
+            messages    : this.state.message
+        });
+        console.log(this.state.message);
+    }
+
     render() {
         return  <React.Fragment>
                     <MyRow style={{maxWidth : 1381}}>
@@ -98,14 +113,19 @@ class ChatRoom extends React.Component {
                         </Col>
                         <Col size={8} style={{paddingLeft : 0, paddingRight : 0}}>
                             <header style={{backgroundColor : '#eeeeee', height : 60}}>
-                                rr
+                                <Chater titleChild={'Bill Gates'} avatar={Bill}/>
                             </header>
                             <div style={{height : 602}}>
                                 <div style={{height : 550}}>
                                     <M1/>
+                                    {
+                                        Object.keys(this.state.messages).map((Index) => {
+                                            return <Read key={Index} text={this.state.message} change={this.handleChange}/>;
+                                        })
+                                    }
                                 </div>
                                 <div>
-                                    <Newmessage/>
+                                    <Newmessage click={this.add}/>
                                 </div>
                             </div>
                         </Col>

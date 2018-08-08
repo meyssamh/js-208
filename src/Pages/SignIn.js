@@ -33,46 +33,36 @@ class SignIn extends React.Component {
     };
 
     componentDidMount() {
+        this.whenScroll();
         window.addEventListener('scroll', () => {
-            let supportPageOffset = window.pageXOffset !== undefined;
-            let Compact = ((document.compatMode || '') === 'Compact');
-            let scroll = {
-                y: supportPageOffset ? window.pageYOffset :
-                    Compact ? document.documentElement.scrollTop :
-                        document.body.scrollTop
-            };
-
-            if(scroll.y > 50){
-                this.setState({
-                    nav1Hidden : false
-                });
-            } if(scroll.y <= 50) {
-                this.setState({
-                    nav1Hidden: true
-                });
-            }
+            this.whenScroll();
         });
     };
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', () => {
-            let supportPageOffset = window.pageXOffset !== undefined;
-            let Compact = ((document.compatMode || '') === 'Compact');
-            let scroll = {
-                y: supportPageOffset ? window.pageYOffset :
-                    Compact ? document.documentElement.scrollTop :
-                        document.body.scrollTop
-            };
+    whenScroll = () => {
+        let supportPageOffset = window.pageXOffset !== undefined;
+        let Compact = ((document.compatMode || '') === 'Compact');
+        let scroll = {
+            y: supportPageOffset ? window.pageYOffset :
+                Compact ? document.documentElement.scrollTop :
+                    document.body.scrollTop
+        };
 
-            if(scroll.y > 50){
-                this.setState({
-                    nav1Hidden : false
-                });
-            } if(scroll.y <= 50) {
-                this.setState({
-                    nav1Hidden: true
-                });
-            }
+        if(scroll.y > 50){
+            this.setState({
+                nav1Hidden : false
+            });
+        } if(scroll.y <= 50) {
+            this.setState({
+                nav1Hidden: true
+            });
+        }
+    };
+
+    componentWillUnmount() {
+        this.whenScroll();
+        window.removeEventListener('scroll', () => {
+            this.whenScroll();
         });
     };
 

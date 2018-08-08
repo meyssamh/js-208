@@ -1,5 +1,6 @@
 import React from 'react';
-import {SendButton, TextComposer, TextInput, Row, Avatar, Title, Subtitle} from "@livechat/ui-kit";
+import {SendButton, TextComposer, TextInput, Row, Avatar, Title, Subtitle, MessageGroup, Message, Bubble, MessageText}
+from "@livechat/ui-kit";
 import Chat from './Chat';
 import More from './More';
 import Myself from './Myself';
@@ -25,6 +26,19 @@ export const MainUser = (props) => {
                 <div style={{width : 100, boxAlign : 'left'}}>
                     <Img imgSrc={Chat} alternate={'new Chat'} title={'new Chat'} onClick={chatClick}/>
                     <Img imgSrc={More} alternate={'more'} title={'more'} onClick={moreClick}/>
+                </div>
+            </div>
+};
+
+export const Chater = (props) => {
+    const {titleChild, avatar, ...other} = props;
+    return <div style={{display : 'flex', flexWrap : 'wrap', fontSize : 18, fontWeight : 'bold'}}>
+                <div style={{width : 343, padding :'0.5 em'}}>
+                    <Row>
+                        <Avatar {...other} imgUrl={avatar} size={'50px'}
+                                style={{margin : 10, marginTop : 5}}/>
+                        <Title children={titleChild} style={{margin : 18}}/>
+                    </Row>
                 </div>
             </div>
 };
@@ -73,4 +87,15 @@ export const Newmessage = (props) => {
                     <SendButton onClick={click} {...other}/>
                 </Row>
             </TextComposer>
+};
+
+export const Read = (props) => {
+    const {text, change, ...other} = props;
+    return  <MessageGroup>
+                <Message isOwn={true}>
+                    <Bubble radiusType={'single'}>
+                        <MessageText children={text} onChange={change} {...other}/>
+                    </Bubble>
+                </Message>
+            </MessageGroup>
 };
