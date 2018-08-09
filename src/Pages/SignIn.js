@@ -17,6 +17,8 @@ class SignIn extends React.Component {
         };
     };
 
+    _isMounted = false;
+
     handleChange = (e) => {
         const {name, value} = e.target;
         this.setState({
@@ -33,6 +35,7 @@ class SignIn extends React.Component {
     };
 
     componentDidMount() {
+        this._isMounted = true;
         this.whenScroll();
         window.addEventListener('scroll', () => {
             this.whenScroll();
@@ -48,18 +51,22 @@ class SignIn extends React.Component {
                     document.body.scrollTop
         };
 
-        if(scroll.y > 50){
-            this.setState({
-                nav1Hidden : false
-            });
-        } if(scroll.y <= 50) {
-            this.setState({
-                nav1Hidden: true
-            });
+        if(this._isMounted === true) {
+            if (scroll.y > 50) {
+                this.setState({
+                    nav1Hidden: false
+                });
+            }
+            if (scroll.y <= 50) {
+                this.setState({
+                    nav1Hidden: true
+                });
+            }
         }
     };
 
     componentWillUnmount() {
+        this._isMounted = false;
         this.whenScroll();
         window.removeEventListener('scroll', () => {
             this.whenScroll();

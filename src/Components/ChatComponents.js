@@ -1,10 +1,10 @@
 import React from 'react';
-import {SendButton, TextComposer, TextInput, Row, Avatar, Title, Subtitle, MessageGroup, Message, Bubble, MessageText}
-from "@livechat/ui-kit";
+import {Row, Avatar, Title, Subtitle, MessageGroup, Message, Bubble, MessageText} from "@livechat/ui-kit";
 import Chat from './Chat';
 import More from './More';
 import Myself from './Myself';
 import Expand from "./Expand";
+import {MyRow} from "./Components";
 
 
 export const Img = (props) => {
@@ -79,22 +79,33 @@ export const User = (props) => {
             </React.Fragment>
 };
 
-export const Newmessage = (props) => {
-    const {click, ...other} = props;
-    return <TextComposer>
-                <Row align="center">
-                    <TextInput style={{maxHeight : 30}}/>
-                    <SendButton onClick={click} {...other}/>
-                </Row>
-            </TextComposer>
+export const Messagenew = (props) => {
+    const {click, change, name, value, ...other} = props;
+    return  <form >
+        <div className="form-group" style={{margin : 0}}>
+                <MyRow style={{maxWidth : 900, margin : 0}}>
+                    <input onChange={change} type={'text'} name={name} value={value} {...other} id={'message'}
+                           className={'form-control'} placeholder={'Write a message'}
+                           style={{maxWidth : 830, maxHeight : 40, borderRadius : 0,
+                               borderColor : 'white', marginTop : 3, marginLeft : 3, marginRight : 3}}/>
+                    <button type={'submit'} className={'btn btn-success'}
+                            style={{maxHeight : 35, margin : '4px 2px', backgroundColor : 'lightgreen',
+                                borderColor : 'lightgreen', borderRadius : '50%'}} onClick={click} children={'    '}/>
+                </MyRow>
+        </div>
+            </form>
 };
 
+// style={{borderRadius : '50%',backgroundColor: '#4CAF50', border: 'none',
+//     color: 'white', padding: 15, textAlign: 'center', textDecoration: 'none', fontSize: 16,
+//     margin: '4px 2px', cursor: 'pointer'}}
+
 export const Read = (props) => {
-    const {text, change, ...other} = props;
+    const {children, ...other} = props;
     return  <MessageGroup>
                 <Message isOwn={true}>
                     <Bubble radiusType={'single'}>
-                        <MessageText children={text} onChange={change} {...other}/>
+                        <MessageText children={children} {...other} style={{maxWidth : 400}}/>
                     </Bubble>
                 </Message>
             </MessageGroup>

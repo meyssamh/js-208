@@ -1,11 +1,12 @@
 import React from "react";
 import {Col, MyRow} from "../Components/Components";
-import {Chater, MainUser, Newmessage, Read, User} from "../Components/ChatComponents";
+import {Chater, MainUser, Messagenew, Read, User} from "../Components/ChatComponents";
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
 import {M1} from "../Components/M1";
+import {MessageList} from "@livechat/ui-kit";
 
 
 class ChatRoom extends React.Component {
@@ -23,6 +24,7 @@ class ChatRoom extends React.Component {
             class3      : 'dropdown',
             menu3       : 'dropdown-menu',
             message     : '',
+            newmessage  :'',
             messages    : {}
         };
         this.drop1      = this.drop1.bind(this);
@@ -77,20 +79,21 @@ class ChatRoom extends React.Component {
         });
     };
 
-    handleChange = () => {
+    handleChange = (e) => {
         this.setState({
-
+            message : e.target.value
         });
     };
 
     add = (e) =>{
-        console.log('add');
         e.preventDefault();
+        const NextMessage = Object.keys(this.state.messages).length;
+        let clone = {...this.state.messages, [NextMessage] : this.state.message};
         this.setState({
-            messages    : this.state.message
+            messages    : clone,
+            message     : ''
         });
-        console.log(this.state.message);
-    }
+    };
 
     render() {
         return  <React.Fragment>
@@ -116,16 +119,20 @@ class ChatRoom extends React.Component {
                                 <Chater titleChild={'Bill Gates'} avatar={Bill}/>
                             </header>
                             <div style={{height : 602}}>
-                                <div style={{height : 550}}>
-                                    <M1/>
-                                    {
-                                        Object.keys(this.state.messages).map((Index) => {
-                                            return <Read key={Index} text={this.state.message} change={this.handleChange}/>;
-                                        })
-                                    }
+                                <div style={{height : 558, borderBottom : 'solid 1px #e4e6e6'}}>
+                                    <MessageList active>
+                                        <M1/>
+                                        <M1/>
+                                        {
+                                            Object.keys(this.state.messages).map((Index) => {
+                                                return  <Read key={Index} children={this.state.messages[Index]}/>
+                                            })
+                                        }
+                                    </MessageList>
                                 </div>
                                 <div>
-                                    <Newmessage click={this.add}/>
+                                    <Messagenew change={this.handleChange} name={'new'} value={this.state.message}
+                                                click={this.add}/>
                                 </div>
                             </div>
                         </Col>
