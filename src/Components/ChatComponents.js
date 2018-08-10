@@ -5,6 +5,7 @@ import More from './More';
 import Myself from './Myself';
 import Expand from "./Expand";
 import {MyRow} from "./Components";
+import Send from "./Send";
 
 
 export const Img = (props) => {
@@ -85,12 +86,14 @@ export const Messagenew = (props) => {
         <div className="form-group" style={{margin : 0}}>
                 <MyRow style={{maxWidth : 900, margin : 0}}>
                     <input onChange={change} type={'text'} name={name} value={value} {...other} id={'message'}
-                           className={'form-control'} placeholder={'Write a message'}
+                           className={'form-control'} placeholder={'Write a message ...'}
                            style={{maxWidth : 830, maxHeight : 40, borderRadius : 0,
                                borderColor : 'white', marginTop : 3, marginLeft : 3, marginRight : 3}}/>
-                    <button type={'submit'} className={'btn btn-success'}
-                            style={{maxHeight : 35, margin : '4px 2px', backgroundColor : 'lightgreen',
-                                borderColor : 'lightgreen', borderRadius : '50%'}} onClick={click} children={'    '}/>
+                    <button type={'submit'} className={'btn'} title={'Send'}
+                            style={{maxHeight : 35, margin : '4px 2px', backgroundColor : 'white',
+                                borderColor : 'white'}} onClick={click}>
+                        <Img imgSrc={Send} style={{margin : 0, height : 25, align : 'center', marginBottom : 5}}/>
+                    </button>
                 </MyRow>
         </div>
             </form>

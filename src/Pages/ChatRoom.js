@@ -122,7 +122,6 @@ class ChatRoom extends React.Component {
                                 <div style={{height : 558, borderBottom : 'solid 1px #e4e6e6'}}>
                                     <MessageList active>
                                         <M1/>
-                                        <M1/>
                                         {
                                             Object.keys(this.state.messages).map((Index) => {
                                                 return  <Read key={Index} children={this.state.messages[Index]}/>

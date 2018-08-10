@@ -5,9 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 //Pages
 import Home from './Home';
 import SignIn from './SignIn';
-import Denied from './Denied';
 import SignUp from './SignUp';
-import DeniedNew from './DeniedNew';
 import PageNotFound from './PageNotFound';
 import ChatRoom from "./ChatRoom";
 
@@ -16,9 +14,7 @@ class Main extends React.Component {
         return  <Switch>
                     <Route exact path={'/'} component={Home}/>
                     <Route path={'/SignIn'} component={SignIn}/>
-                    <Route path={'/Denied'} component={Denied}/>
                     <Route path={'/SignUp'} component={SignUp}/>
-                    <Route path={'/DeniedNew'} component={DeniedNew}/>
                     <Route path={'/ChatRoom'} component={ChatRoom}/>
 
                     <Route component={PageNotFound}/>
