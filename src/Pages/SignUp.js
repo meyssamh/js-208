@@ -31,7 +31,6 @@ class SignUp extends React.Component {
 
     sign = (e) => {
         localStorage.setItem('username', this.state.username);
-        localStorage.setItem('password', this.state.password1);
         if (this.state.password1 !== this.state.password2) {
             this.setState({
                     err: false

@@ -39,3 +39,18 @@ footer .col-4{
 .separator{
     border-bottom: 1px solid #e4e6e6;
 }
+#user1 :hover{
+    background-color: #e1e1e1;
+}
+#user2 :hover{
+    background-color: #e1e1e1;
+}
+#user3 :hover{
+    background-color: #e1e1e1;
+}
+#maincol{
+    background-color: #e5e5e5;
+}
+.welcome{
+    padding: 300px 210px;
+}

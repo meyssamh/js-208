@@ -20,7 +20,7 @@ export const Col = (props) => {
 export const Button = (props) => {
     const {type, ...other} = props;
     const Class = (type !== undefined ? `btn btn-${type}` : 'btn btn-light');
-    return <button {...other} className={Class} >{props.children}</button>
+    return <button {...other} style={{borderRadius : 0}} className={Class} >{props.children}</button>
 };
 
 export const Header = (props) => {
@@ -39,12 +39,12 @@ export const Info = (props) => {
     const {inputType, iconType, iconSize, id, place, ...other} = props;
     return  <div className={'form-group input-group'}>
                 <div className={'input-group-prepend'}>
-                    <span className={'input-group-text'}>
+                    <span className={'input-group-text'} style={{borderRadius : 0, boxShadow : '3px 3px #eeeeee'}}>
                         <Icon type={iconType} size={iconSize}/>
                     </span>
                 </div>
                 <input type={inputType} {...other} id={id} className={'form-control'} placeholder={place}
-                       required={true}/>
+                       required={true} style={{borderRadius : 0, boxShadow : '3px 3px #eeeeee'}}/>
             </div>
 };
 

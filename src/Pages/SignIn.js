@@ -28,7 +28,6 @@ class SignIn extends React.Component {
 
     handleClick = () => {
         localStorage.setItem('username', this.state.username);
-        localStorage.setItem('password', this.state.password);
         if((this.state.username.length && this.state.password.length) > 1) {
             this.props.history.push('/ChatRoom');
         }
