@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import './Main.css';
-import {Button, Col, Info, Nav} from "../Components/Components";
-import {Link} from "react-router-dom";
+import {Button1, Col, Info, Nav} from '../Components/Components';
+import {Link} from 'react-router-dom';
 import Logo from '../Components/Logo1';
-import {Footer} from "../Components/Footer";
+import {Footer} from '../Components/Footer';
 
 
 class SignIn extends React.Component {
@@ -93,7 +93,7 @@ class SignIn extends React.Component {
                                       place={'Password'} value={this.state.password1} onChange={this.handleChange}
                                       name={'password'}/>
                                 <br/>
-                                <Button type={'primary'} children={'Sign in'} onClick={this.handleClick}/>
+                                <Button1 type={'primary'} children={'Sign in'} onClick={this.handleClick}/>
                             </form>
                         </Col>
                     </div>

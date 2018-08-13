@@ -1,9 +1,9 @@
-import React from "react";
-import {Nav} from "../Components/Components";
+import React from 'react';
+import {Nav} from '../Components/Components';
 import './Main.css';
 import Logo from '../Components/Logo';
 import Logo1 from '../Components/Logo1';
-import {Footer} from "../Components/Footer";
+import {Footer} from '../Components/Footer';
 
 class Home extends React.Component {
 

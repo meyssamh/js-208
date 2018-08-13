@@ -1,19 +1,25 @@
 import React from 'react';
 import {Col, MyRow} from '../Components/Components';
-import {MainUser, Read, User, View} from '../Components/ChatComponents';
+import {BackColor, MainUser, Profile, User, UserProfile, View} from '../Components/ChatComponents';
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
 import {BillChat, AlbertChat, RobotChat} from '../Components/Chat';
+import Myself from "../Components/Myself";
+// import {Row} from "@livechat/ui-kit";
 
 
 
 class ChatRoom extends React.Component {
     constructor(){
         super();
+        this.username = localStorage.getItem('username') !== null ?
+            localStorage.getItem('username') : localStorage.setItem('username', 'username');
+        this.color = localStorage.getItem('BackColor') !== null ?
+                localStorage.getItem('BackColor') : localStorage.setItem('BackColor', 'white');
         this.state = {
-            username        : localStorage.getItem('username'),
+            username        : this.username,
             mainchat        : true,
             billchat        : false,
             albertchat      : true,
@@ -24,6 +30,7 @@ class ChatRoom extends React.Component {
             albertpro       : true,
             robotpro        : true,
             backcolor       : true,
+            backgroundColor : this.color,
             aria1           : false,
             class1          : 'dropdown',
             menu1           : 'dropdown-menu',
@@ -97,7 +104,7 @@ class ChatRoom extends React.Component {
         });
     };
 
-    add = (e) =>{
+    add = (e) => {
         e.preventDefault();
         const NextMessage = Object.keys(this.state.messages).length;
         let clone = {...this.state.messages, [NextMessage] : this.state.messagebill};
@@ -107,38 +114,74 @@ class ChatRoom extends React.Component {
         });
     };
 
+    close = () => {
+        this.setState({
+            mainpart    : false,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+        });
+    };
+
+    changecolor = (e) => {
+        e.preventDefault();
+        localStorage.setItem('BackColor', e.target.id);
+        this.setState({
+            BackgroundColor : this.color
+        });
+    };
+
     render() {
         return  <React.Fragment>
                     <MyRow style={{maxWidth : 1381}}>
                         <Col size={4} style={{paddingRight : 0, borderRight : 'solid 1px #e4e6e6'}}>
-                            <header style={{backgroundColor : '#eeeeee', height : 60}}>
-                                <MainUser titleChild={this.state.username}/>
-                            </header>
-                            <div style={{height : 602, borderBottom : 'solid 1px #e4e6e6'}}>
-                                <User img={Bill} children={'Bill Gates'} subtitle={'... money money money money ...'}
-                                      aria={this.state.aria1} dropdownShow={this.state.class1} id={'user1'}
-                                      menuShow={this.state.menu1} expandClick={this.drop1}/>
-                                <User img={Albert} children={'Albert Einstein'} subtitle={'E = MC-Albert'}
-                                      aria={this.state.aria3} dropdownShow={this.state.class2} id={'user2'}
-                                      menuShow={this.state.menu2} expandClick={this.drop2}/>
-                                <User img={Robot} children={'Terminator'} subtitle={'Hasta la vista, baby'}
-                                      aria={this.state.aria3} dropdownShow={this.state.class3} id={'user3'}
-                                      menuShow={this.state.menu3} expandClick={this.drop3}/>
+                            <div className={'maincol4'} hidden={this.state.mainpart}>
+                                <header style={{backgroundColor : '#eeeeee', height : 60}}>
+                                    <MainUser titleChild={this.state.username}/>
+                                </header>
+                                <div style={{height : 602, borderBottom : 'solid 1px #e4e6e6'}}>
+                                    <User img={Bill} children={'Bill Gates'} subtitle={'... money money money money ...'}
+                                          aria={this.state.aria1} dropdownShow={this.state.class1} id={'user1'}
+                                          menuShow={this.state.menu1} expandClick={this.drop1}/>
+                                    <User img={Albert} children={'Albert Einstein'} subtitle={'E = MC-Albert'}
+                                          aria={this.state.aria3} dropdownShow={this.state.class2} id={'user2'}
+                                          menuShow={this.state.menu2} expandClick={this.drop2}/>
+                                    <User img={Robot} children={'Terminator'} subtitle={'Hasta la vista, baby'}
+                                          aria={this.state.aria3} dropdownShow={this.state.class3} id={'user3'}
+                                          menuShow={this.state.menu3} expandClick={this.drop3}/>
+                                </div>
                             </div>
+                            <UserProfile avatar={Myself} username={this.state.username} title={'nice days'}
+                                         hidden={this.state.userpro} click={this.close}/>
+                            <Profile avatar={Bill} username={'Bill Gates'} email={'bill.gates@msn.com'}
+                                     title={'... money money money money ...'} hidden={this.state.billpro}
+                                     click={this.close}/>
+                            <Profile avatar={Albert} username={'Albert Einstein'} email={'albert.einstein@caltec.com'}
+                                     title={'E = MC-Albert'} hidden={this.state.albertpro} click={this.close}/>
+                            <Profile avatar={Robot} username={'Terminator'} email={'T800@skynet.com'}
+                                     title={'Hasta la vista, baby'} hidden={this.state.robotpro} click={this.close}/>
+                            <BackColor hidden={this.state.backcolor} white={this.changecolor}
+                                       lightgreen={this.changecolor} lightblue={this.changecolor}
+                                       lightyellow={this.changecolor} click={this.close}/>
                         </Col>
                         <Col size={8} style={{paddingLeft : 0, paddingRight : 0}}>
-                            <div id={'maincol'} style={{width : 919.33, height : 662}} hidden={this.state.mainchat}>
-                            <h2 className={'welcome'}>Welcome to Dialogue Chatroom!</h2>
+                            <div className={'maincol8'} hidden={this.state.mainchat}>
+                                <h2 className={'welcome'}>Welcome to Dialogue Chatroom!</h2>
                             </div>
                             <View title={'Bill Gates'} avatar={Bill} change={this.handleChange} click={this.add}
                                   value={this.state.messagebill} name={'Bill'} children={<BillChat/>}
-                                  hidden={this.state.billchat}/>
+                                  hidden={this.state.billchat}
+                                  style={{backgroundColor : localStorage.getItem('BackColor')}}/>
                             <View title={'Albert Einstein'} avatar={Albert} change={this.handleChange} click={this.add}
                                   value={this.state.messagealbert} name={'Albert'} children={<AlbertChat/>}
-                                  hidden={this.state.albertchat}/>
+                                  hidden={this.state.albertchat}
+                                  style={{backgroundColor : localStorage.getItem('BackColor')}}/>
                             <View title={'Robot'} avatar={Robot} change={this.handleChange} click={this.add}
                                   value={this.state.messagerobot} name={'Robot'} children={<RobotChat/>}
-                                  hidden={this.state.robotchat}/>
+                                  hidden={this.state.robotchat}
+                                  style={{backgroundColor : localStorage.getItem('BackColor')}}/>
                         </Col>
                     </MyRow>
                 </React.Fragment>;

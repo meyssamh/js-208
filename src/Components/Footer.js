@@ -1,6 +1,6 @@
 import React from 'react';
-import {Col, Container, MyRow} from "./Components";
-import {Link} from "react-router-dom";
+import {Col, Container, MyRow} from './Components';
+import {Link} from 'react-router-dom';
 
 export const Footer = () => {
     return  <footer className={'footer'}>

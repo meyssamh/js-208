@@ -1,5 +1,5 @@
 import React from 'react';
-import {Read, Readother} from "./ChatComponents";
+import {Read, Readother} from './ChatComponents';
 
 export const BillChat = () => {
     return  <React.Fragment>

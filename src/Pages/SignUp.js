@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import './Main.css';
-import {Button, Col, Info, Nav} from "../Components/Components";
-import {Link} from "react-router-dom";
-import Logo from "../Components/Logo1";
-import {Footer} from "../Components/Footer";
+import {Button1, Col, Info, Nav} from '../Components/Components';
+import {Link} from 'react-router-dom';
+import Logo from '../Components/Logo1';
+import {Footer} from '../Components/Footer';
 
 
 class SignUp extends React.Component {
@@ -111,7 +111,7 @@ class SignUp extends React.Component {
                                     ERROR: Your password and confirmation password do not match!
                                 </div>
                                 <br/>
-                                <Button type={'primary'} children={'Sign up'} onClick={this.sign}/>
+                                <Button1 type={'primary'} children={'Sign up'} onClick={this.sign}/>
                             </form>
                         </Col>
                     </div>

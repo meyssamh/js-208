@@ -48,9 +48,36 @@ footer .col-4{
 #user3 :hover{
     background-color: #e1e1e1;
 }
-#maincol{
+.maincol8{
     background-color: #e5e5e5;
+    width : 919.33px;
+    height : 662px;
+}
+.maincol4{
+    width : 444px;
+    height : 662px;
 }
 .welcome{
     padding: 300px 210px;
+}
+.color{
+    margin : 36px;
+    width : 150px;
+    height : 150px;
+    display : inline-block;
+    border : solid 1px black;
+    background-color: white;
+    cursor: pointer;
+}
+#white{
+    background-color: white;
+}
+#lightgreen{
+    background-color: lightgreen;
+}
+#lightblue{
+    background-color: lightblue;
+}
+#lightyellow{
+    background-color: lightyellow;
 }

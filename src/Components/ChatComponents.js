@@ -1,11 +1,12 @@
 import React from 'react';
-import {Row, Avatar, Title, Subtitle, Message, Bubble, MessageText, MessageList} from "@livechat/ui-kit";
+import {Row, Avatar, Title, Subtitle, Message, Bubble, MessageText, MessageList} from '@livechat/ui-kit';
 import Chatlogo from './Chatlogo';
 import More from './More';
 import Myself from './Myself';
-import Expand from "./Expand";
-import {MyRow} from "./Components";
-import Send from "./Send";
+import Expand from './Expand';
+import {MyRow} from './Components';
+import Send from './Send';
+import Clear from "./Clear";
 
 
 export const Img = (props) => {
@@ -84,7 +85,7 @@ export const User = (props) => {
 export const Messagenew = (props) => {
     const {click, change, name, value, ...other} = props;
     return  <form >
-                <div className="form-group" style={{margin : 0}}>
+                <div className='form-group' style={{margin : 0}}>
                         <MyRow style={{maxWidth : 900, margin : 0}}>
                             <input onChange={change} type={'text'} name={name} value={value} {...other} id={'message'}
                                    className={'form-control'} placeholder={'Write a message ...'}
@@ -120,18 +121,76 @@ export const Readother = (props) => {
 };
 
 export const View = (props) => {
-    const {title, avatar, children, change, name, value, click, ...other} = props;
-    return  <div {...other}>
+    const {title, avatar, hidden, change, name, value, click, ...other} = props;
+    return  <div hidden={hidden}>
                 <header style={{backgroundColor : '#eeeeee', height : 60}}>
                         <Chater titleChild={title} avatar={avatar}/>
                 </header>
                 <div style={{height : 602}}>
                     <div style={{height : 558, borderBottom : 'solid 1px #e4e6e6'}}>
-                        <MessageList active children={children}/>
+                        <MessageList active {...other}/>
                     </div>
                     <div>
                         <Messagenew change={change} name={name} value={value} click={click}/>
                     </div>
+                </div>
+            </div>
+};
+
+export const UserProfile = (props) => {
+    const {avatar, click, username, title, ...other} = props;
+    return  <div className={'maincol4'} {...other}>
+                <div style={{width : 444, height : 400, backgroundColor : '#e4e6e6'}}>
+                    <Row>
+                        <Avatar imgUrl={avatar} size={'350px'} style={{marginLeft : 47, marginTop : 25}}/>
+                        <Img imgSrc={Clear} title={'Close'} onClick={click}/>
+                    </Row>
+                </div>
+                <div style={{textAlign : 'center'}}>
+                    <p style={{marginTop : 10}}>Username:</p>
+                    <h4 children={username}/>
+                    <p>Status:</p>
+                    <h6 children={title}/>
+                </div>
+            </div>
+};
+
+export const Profile = (props) => {
+    const {avatar, click, username, title, email, ...other} = props;
+    return  <div className={'maincol4'} {...other}>
+                <div style={{width : 444, height : 400, backgroundColor : '#e4e6e6'}}>
+                    <Row>
+                        <Avatar imgUrl={avatar} size={'350px'} style={{marginLeft : 47, marginTop : 25}}/>
+                        <Img imgSrc={Clear} title={'Close'} onClick={click}/>
+                    </Row>
+                </div>
+                <div style={{textAlign : 'center'}}>
+                    <p style={{marginTop : 10}}>Username:</p>
+                    <h4 children={username}/>
+                    <p>Status:</p>
+                    <h6 children={title}/>
+                    <p>E-mail:</p>
+                    <p children={email}/>
+                </div>
+            </div>
+};
+
+export const BackColor = (props) => {
+    const {click, white, lightgreen, lightblue, lightyellow, ...other} = props;
+    return  <div className={'maincol4'} {...other}>
+                <div style={{width : 444, height : 100, backgroundColor : '#e4e6e6'}}>
+                    <Row>
+                        <h4 style={{marginTop : 33, marginLeft : 107, marginRight : 90}}>
+                            Background Color
+                        </h4>
+                        <Img imgSrc={Clear} title={'Close'} onClick={click}/>
+                    </Row>
+                </div>
+                <div>
+                    <div className={'color'} id={'white'} title={'White'} onClick={white}/>
+                    <div className={'color'} id={'lightgreen'} title={'Light Green'} onClick={lightgreen}/>
+                    <div className={'color'} id={'lightblue'} title={'Light Blue'} onClick={lightblue}/>
+                    <div className={'color'} id={'lightyellow'} title={'Light Yellow'} onClick={lightyellow}/>
                 </div>
             </div>
 };
