@@ -7,6 +7,10 @@ import Expand from './Expand';
 import {MyRow} from './Components';
 import Send from './Send';
 import Clear from "./Clear";
+import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
+import Robot from "./Robot";
+import Albert from "./AlbertEinstein";
+import Bill from "./BillGates";
 
 
 export const Img = (props) => {
@@ -16,7 +20,7 @@ export const Img = (props) => {
 };
 
 export const MainUser = (props) => {
-    const {rowClick, titleChild, chatClick, moreClick, ...other} = props;
+    const {rowClick, titleChild, chatClick, isOpen, isToggle, backColor, signout, ...other} = props;
     return <div style={{display : 'flex', flexWrap : 'wrap', fontSize : 18, fontWeight : 'bold'}}>
                 <div style={{width : 343, padding :'0.5 em'}}>
                     <Row onClick={rowClick} style={{cursor : 'pointer'}}>
@@ -26,8 +30,24 @@ export const MainUser = (props) => {
                     </Row>
                 </div>
                 <div style={{width : 100, boxAlign : 'left'}}>
-                    <Img imgSrc={Chatlogo} alternate={'new Chat'} title={'new Chat'} onClick={chatClick}/>
-                    <Img imgSrc={More} alternate={'more'} title={'more'} onClick={moreClick}/>
+                    <MyRow style={{paddingLeft : 15}}>
+                        <Img imgSrc={Chatlogo} alternate={'new Chat'} title={'new Chat'} onClick={chatClick}/>
+                        <Dropdown isOpen={isOpen} toggle={isToggle} style={{margin : 15}}>
+                            <DropdownToggle tag={'span'} onClick={isToggle} data-toggle={'dropdown'}
+                                            aria-expanded={isOpen}>
+                                <Img imgSrc={More} alternate={'expand'} title={'expand'}
+                                     style={{height : 20, cursor : 'pointer'}}/>
+                            </DropdownToggle>
+                            <DropdownMenu style={{borderRadius : 0}}>
+                                <div id={'back'} onClick={backColor} style={{fontWeight : 'normal',
+                                    cursor : 'pointer', marginBottom : 10}}>
+                                    &nbsp;&nbsp;Background Color</div>
+                                <div id={'signout'} onClick={signout}
+                                     style={{fontWeight : 'normal', cursor : 'pointer'}}>
+                                    &nbsp;&nbsp;Sign out</div>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </MyRow>
                 </div>
             </div>
 };
@@ -46,7 +66,7 @@ export const Chater = (props) => {
 };
 
 export const User = (props) => {
-    const {id, chatHistory, img, children, subtitle, dropdownShow, expandClick, aria, menuShow, ...other} = props;
+    const {id, chatHistory, img, children, subtitle, isOpen, isToggle, profile, ...other} = props;
     return  <React.Fragment>
                 <div id={id}>
                     <div style={{display : 'flex', flexWrap : 'wrap', fontSize : 18, fontWeight : 'bold'}}>
@@ -65,21 +85,50 @@ export const User = (props) => {
                                 </ul>
                             </Row>
                         </div>
-                        <div style={{width : 60.66, boxAlign : 'left'}}>
-                            <div className={dropdownShow}>
-                                <Img imgSrc={Expand} alternate={'expand'} title={'expand'} onClick={expandClick}
-                                     className={'dropdown-toggle'} id={'dropdownMenuButton'} data-toggle={'dropdown'}
-                                     aria-haspopup={'true'} aria-expanded={aria}
-                                     style={{height : 30, marginLeft : 20, marginTop : 20, cursor : 'pointer'}}/>
-                                <div className={menuShow} aria-labelledby={'dropdownMenuButton'}>
-                                    <p className={'dropdown-item'}>Profile</p>
-                                </div>
-                            </div>
+                        <div style={{width : 60.66}}>
+                            <Dropdown isOpen={isOpen} toggle={isToggle} style={{marginLeft : 20, marginTop : 20}}>
+                                <DropdownToggle tag={'span'} onClick={isToggle} data-toggle={'dropdown'}
+                                    aria-expanded={isOpen}>
+                                    <Img imgSrc={Expand} alternate={'expand'} title={'expand'}
+                                         style={{height : 30, cursor : 'pointer'}}/>
+                                </DropdownToggle>
+                                <DropdownMenu className={'profile'} style={{borderRadius : 0}}>
+                                    <div className={'profile'} onClick={profile} style={{fontWeight : 'normal', cursor : 'pointer'}}>
+                                        &nbsp;&nbsp;Profile</div>
+                                </DropdownMenu>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
                 <div className={'separator'}/>
             </React.Fragment>
+};
+
+export const User2 = (props) => {
+    const {id, chatHistory, img, children, subtitle, ...other} = props;
+    return  <React.Fragment>
+        <div id={id}>
+            <div style={{display : 'flex', flexWrap : 'wrap', fontSize : 18, fontWeight : 'bold', cursor: 'pointer'}}
+                 onClick={chatHistory}>
+                <div style={{width : 383, padding :'0.5 em'}}>
+                    <Row>
+                        <Avatar {...other} imgUrl={img} size={'50px'} style={{margin : 10, marginTop : 15}}/>
+                        <ul style={{listStyleType : 'none', paddingLeft : 17}}>
+                            <li>
+                                <Title children={children} style={{marginTop : 15}}/>
+                            </li>
+                            <li>
+                                <Subtitle style={{fontSize : 12, maxHeight : 18, maxWidth : 200,
+                                    textOverflow : 'ellipsis', overflow : 'hidden', whiteSpace : 'nowrap'}}
+                                          children={subtitle}/>
+                            </li>
+                        </ul>
+                    </Row>
+                </div>
+            </div>
+        </div>
+        <div className={'separator'}/>
+    </React.Fragment>
 };
 
 export const Messagenew = (props) => {
@@ -123,11 +172,11 @@ export const Readother = (props) => {
 export const View = (props) => {
     const {title, avatar, hidden, change, name, value, click, ...other} = props;
     return  <div hidden={hidden}>
-                <header style={{backgroundColor : '#eeeeee', height : 60}}>
+                <header style={{backgroundColor : '#eeeeee', height : 65}}>
                         <Chater titleChild={title} avatar={avatar}/>
                 </header>
-                <div style={{height : 602}}>
-                    <div style={{height : 558, borderBottom : 'solid 1px #e4e6e6'}}>
+                <div style={{height : 597}}>
+                    <div style={{height : 553, borderBottom : 'solid 1px #e4e6e6'}}>
                         <MessageList active {...other}/>
                     </div>
                     <div>
@@ -191,6 +240,28 @@ export const BackColor = (props) => {
                     <div className={'color'} id={'lightgreen'} title={'Light Green'} onClick={lightgreen}/>
                     <div className={'color'} id={'lightblue'} title={'Light Blue'} onClick={lightblue}/>
                     <div className={'color'} id={'lightyellow'} title={'Light Yellow'} onClick={lightyellow}/>
+                </div>
+            </div>
+};
+
+export const Newchat = (props) => {
+    const {click, showChat1, showChat2, showChat3, ...other} = props;
+    return  <div className={'maincol4'} {...other}>
+                <div style={{width : 444, height : 100, backgroundColor : '#e4e6e6'}}>
+                    <Row>
+                        <h4 style={{marginTop : 33, marginLeft : 170, marginRight : 115}}>
+                            New Chat
+                        </h4>
+                        <Img imgSrc={Clear} title={'Close'} onClick={click}/>
+                    </Row>
+                </div>
+                <div>
+                    <User2 img={Bill} children={'Bill Gates'} subtitle={'... money money money money ...'} id={'user1'}
+                           chatHistory={showChat1}/>
+                    <User2 img={Albert} children={'Albert Einstein'} subtitle={'E = MC-Albert'} id={'user2'}
+                           chatHistory={showChat2}/>
+                    <User2 img={Robot} children={'Terminator'} subtitle={'Hasta la vista, baby'} id={'user3'}
+                           chatHistory={showChat3}/>
                 </div>
             </div>
 };

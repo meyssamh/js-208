@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, MyRow} from '../Components/Components';
-import {BackColor, MainUser, Profile, User, UserProfile, View} from '../Components/ChatComponents';
+import {BackColor, MainUser, Newchat, Profile, User, UserProfile, View} from '../Components/ChatComponents';
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
@@ -12,16 +12,20 @@ import Myself from "../Components/Myself";
 
 
 class ChatRoom extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.username = localStorage.getItem('username') !== null ?
             localStorage.getItem('username') : localStorage.setItem('username', 'username');
         this.color = localStorage.getItem('BackColor') !== null ?
                 localStorage.getItem('BackColor') : localStorage.setItem('BackColor', 'white');
+        this.toggle1 = this.toggle1.bind(this);
+        this.toggle2 = this.toggle2.bind(this);
+        this.toggle3 = this.toggle3.bind(this);
+        this.toggle4 = this.toggle4.bind(this);
         this.state = {
             username        : this.username,
-            mainchat        : true,
-            billchat        : false,
+            mainchat        : false,
+            billchat        : true,
             albertchat      : true,
             robotchat       : true,
             mainpart        : false,
@@ -30,71 +34,41 @@ class ChatRoom extends React.Component {
             albertpro       : true,
             robotpro        : true,
             backcolor       : true,
+            newchat         : true,
             backgroundColor : this.color,
-            aria1           : false,
-            class1          : 'dropdown',
-            menu1           : 'dropdown-menu',
-            aria2           : false,
-            class2          : 'dropdown',
-            menu2           : 'dropdown-menu',
-            aria3           : false,
-            class3          : 'dropdown',
-            menu3           : 'dropdown-menu',
+            dropdownopen1   : false,
+            dropdownopen2   : false,
+            dropdownopen3   : false,
+            dropdownopen4   : false,
             messagebill     : '',
             messagealbert   : '',
             messagerobot    : '',
             newmessage      : '',
             messages        : {}
         };
-        this.drop1      = this.drop1.bind(this);
-        this.drop2      = this.drop2.bind(this);
-        this.drop3      = this.drop3.bind(this);
-        this.closeMenu  = this.closeMenu.bind(this);
     };
 
-    drop1 = () => {
+    toggle1() {
         this.setState({
-            aria1   : true,
-            class1  : 'dropdown show',
-            menu1   : 'dropdown-menu show'
-        }, () => {
-            document.addEventListener('click', this.closeMenu);
+            dropdownopen1 : !this.state.dropdownopen1
         });
     };
 
-    drop2 = () => {
+    toggle2() {
         this.setState({
-            aria2   : true,
-            class2  : 'dropdown show',
-            menu2   : 'dropdown-menu show'
-        }, () => {
-            document.addEventListener('click', this.closeMenu);
+            dropdownopen2 : !this.state.dropdownopen2
         });
     };
 
-    drop3 = () => {
+    toggle3() {
         this.setState({
-            aria3   : true,
-            class3  : 'dropdown show',
-            menu3   : 'dropdown-menu show'
-        }, () => {
-            document.addEventListener('click', this.closeMenu);
+            dropdownopen3 : !this.state.dropdownopen3
         });
     };
 
-    closeMenu() {
+    toggle4() {
         this.setState({
-            aria1   : false,
-            class1  : 'dropdown',
-            menu1   : 'dropdown-menu',
-            aria2   : false,
-            class2  : 'dropdown',
-            menu2   : 'dropdown-menu',
-            aria3   : false,
-            class3  : 'dropdown',
-            menu3   : 'dropdown-menu',
-        }, () => {
-            document.removeEventListener('click', this.closeMenu);
+            dropdownopen4 : !this.state.dropdownopen4
         });
     };
 
@@ -114,6 +88,153 @@ class ChatRoom extends React.Component {
         });
     };
 
+    open = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : false,
+            newchat     : true
+        });
+    };
+
+    open2 = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : false,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    open3 = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : true,
+            billpro     : false,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    open4 = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : false,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    open5 = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : false,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    open6 = () => {
+        this.setState({
+            mainpart    : true,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : false
+        });
+    };
+
+    bill = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : false,
+            albertchat  : true,
+            robotchat   : true
+        });
+    };
+
+    albert = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : true,
+            albertchat  : false,
+            robotchat   : true
+        });
+    };
+
+    robot = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : true,
+            albertchat  : true,
+            robotchat   : false
+        });
+    };
+
+    show1 = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : false,
+            albertchat  : true,
+            robotchat   : true,
+            mainpart    : false,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    show2 = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : true,
+            albertchat  : false,
+            robotchat   : true,
+            mainpart    : false,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
+    show3 = () => {
+        this.setState({
+            mainchat    : true,
+            billchat    : true,
+            albertchat  : true,
+            robotchat   : false,
+            mainpart    : false,
+            userpro     : true,
+            billpro     : true,
+            albertpro   : true,
+            robotpro    : true,
+            backcolor   : true,
+            newchat     : true
+        });
+    };
+
     close = () => {
         this.setState({
             mainpart    : false,
@@ -122,6 +243,7 @@ class ChatRoom extends React.Component {
             albertpro   : true,
             robotpro    : true,
             backcolor   : true,
+            newchat     : true
         });
     };
 
@@ -133,24 +255,33 @@ class ChatRoom extends React.Component {
         });
     };
 
+    signout = () => {
+        localStorage.removeItem('username');
+        localStorage.removeItem('BackColor');
+        this.props.history.push('/');
+    };
+
     render() {
         return  <React.Fragment>
                     <MyRow style={{maxWidth : 1381}}>
                         <Col size={4} style={{paddingRight : 0, borderRight : 'solid 1px #e4e6e6'}}>
                             <div className={'maincol4'} hidden={this.state.mainpart}>
-                                <header style={{backgroundColor : '#eeeeee', height : 60}}>
-                                    <MainUser titleChild={this.state.username}/>
+                                <header style={{backgroundColor : '#eeeeee', height : 65}}>
+                                    <MainUser rowClick={this.open2} titleChild={this.state.username}
+                                              isOpen={this.state.dropdownopen1} isToggle={this.toggle1}
+                                              backColor={this.open} signout={this.signout} chatClick={this.open6}/>
                                 </header>
-                                <div style={{height : 602, borderBottom : 'solid 1px #e4e6e6'}}>
+                                <div style={{height : 597, borderBottom : 'solid 1px #e4e6e6'}}>
+                                    {/*const {chatHistory, isOpen, isToggle, expandClick, ...other} = props;*/}
                                     <User img={Bill} children={'Bill Gates'} subtitle={'... money money money money ...'}
-                                          aria={this.state.aria1} dropdownShow={this.state.class1} id={'user1'}
-                                          menuShow={this.state.menu1} expandClick={this.drop1}/>
+                                          id={'user1'} isOpen={this.state.dropdownopen2} isToggle={this.toggle2}
+                                          profile={this.open3} chatHistory={this.bill}/>
                                     <User img={Albert} children={'Albert Einstein'} subtitle={'E = MC-Albert'}
-                                          aria={this.state.aria3} dropdownShow={this.state.class2} id={'user2'}
-                                          menuShow={this.state.menu2} expandClick={this.drop2}/>
+                                          id={'user2'} isOpen={this.state.dropdownopen3} isToggle={this.toggle3}
+                                          profile={this.open4} chatHistory={this.albert}/>
                                     <User img={Robot} children={'Terminator'} subtitle={'Hasta la vista, baby'}
-                                          aria={this.state.aria3} dropdownShow={this.state.class3} id={'user3'}
-                                          menuShow={this.state.menu3} expandClick={this.drop3}/>
+                                          id={'user3'} isOpen={this.state.dropdownopen4} isToggle={this.toggle4}
+                                          profile={this.open5} chatHistory={this.robot}/>
                                 </div>
                             </div>
                             <UserProfile avatar={Myself} username={this.state.username} title={'nice days'}
@@ -165,6 +296,8 @@ class ChatRoom extends React.Component {
                             <BackColor hidden={this.state.backcolor} white={this.changecolor}
                                        lightgreen={this.changecolor} lightblue={this.changecolor}
                                        lightyellow={this.changecolor} click={this.close}/>
+                            <Newchat hidden={this.state.newchat} click={this.close} showChat1={this.show1}
+                                     showChat2={this.show2} showChat3={this.show3}/>
                         </Col>
                         <Col size={8} style={{paddingLeft : 0, paddingRight : 0}}>
                             <div className={'maincol8'} hidden={this.state.mainchat}>

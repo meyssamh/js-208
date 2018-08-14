@@ -81,3 +81,12 @@ footer .col-4{
 #lightyellow{
     background-color: lightyellow;
 }
+#user1 :hover .profile{
+    background-color: white;
+}
+#user2 :hover .profile{
+    background-color: white;
+}
+#user3 :hover .profile{
+    background-color: white;
+}
