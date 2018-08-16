@@ -1,13 +1,15 @@
 import React from 'react';
 import {Col, MyRow} from '../Components/Components';
-import {BackColor, MainUser, Newchat, Profile, User, UserProfile, View} from '../Components/ChatComponents';
+import {BackColor, MainUser, Newchat, Profile, Read, User, UserProfile, View} from '../Components/ChatComponents';
 import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
-import {BillChat, AlbertChat, RobotChat} from '../Components/Chat';
+// import {BillChat, AlbertChat, RobotChat} from '../Components/Chat';
 import Myself from "../Components/Myself";
-// import {Row} from "@livechat/ui-kit";
+import Billchat from "../Components/Billchat";
+import Albertchat from "../Components/Albertchat";
+import Robotchat from "../Components/Robotchat";
 
 
 
@@ -17,7 +19,10 @@ class ChatRoom extends React.Component {
         this.username = localStorage.getItem('username') !== null ?
             localStorage.getItem('username') : localStorage.setItem('username', 'username');
         this.color = localStorage.getItem('BackColor') !== null ?
-                localStorage.getItem('BackColor') : localStorage.setItem('BackColor', 'white');
+            localStorage.getItem('BackColor') : localStorage.setItem('BackColor', 'white');
+        this.chat1 = localStorage.getItem('bill') !== null ? JSON.parse(localStorage.getItem('bill')) : [];
+        this.chat2 = localStorage.getItem('albert') !== null ? JSON.parse(localStorage.getItem('albert')) : [];
+        this.chat3 = localStorage.getItem('robot') !== null ? JSON.parse(localStorage.getItem('robot')) : [];
         this.toggle1 = this.toggle1.bind(this);
         this.toggle2 = this.toggle2.bind(this);
         this.toggle3 = this.toggle3.bind(this);
@@ -43,9 +48,10 @@ class ChatRoom extends React.Component {
             messagebill     : '',
             messagealbert   : '',
             messagerobot    : '',
-            newmessage      : '',
-            messages        : {}
-        };
+            messagesbill    : this.chat1,
+            messagesalbert  : this.chat2,
+            messagesrobot   : this.chat3
+        }
     };
 
     toggle1() {
@@ -73,18 +79,51 @@ class ChatRoom extends React.Component {
     };
 
     handleChange = (e) => {
+        const {name, value} = e.target;
         this.setState({
-            messagebill : e.target.value
+            [name] : value
         });
     };
 
-    add = (e) => {
+    addbill = (e) => {
         e.preventDefault();
-        const NextMessage = Object.keys(this.state.messages).length;
-        let clone = {...this.state.messages, [NextMessage] : this.state.messagebill};
+        const {messagebill} = this.state;
+        let Data = this.state.messagesbill;
+        Data.push({
+            messagebill
+        });
+        localStorage.setItem('bill', JSON.stringify(Data));
         this.setState({
-            messages        : clone,
+            messagesbill    : Data,
             messagebill     : ''
+        });
+    };
+
+    addalbert = (e) => {
+        e.preventDefault();
+        const {messagealbert} = this.state;
+        let Data = this.state.messagesalbert;
+        Data.push({
+            messagealbert
+        });
+        localStorage.setItem('albert', JSON.stringify(Data));
+        this.setState({
+            messagesalbert    : Data,
+            messagealbert     : ''
+        });
+    };
+
+    addrobot = (e) => {
+        e.preventDefault();
+        const {messagerobot} = this.state;
+        let Data = this.state.messagesrobot;
+        Data.push({
+            messagerobot
+        });
+        localStorage.setItem('robot', JSON.stringify(Data));
+        this.setState({
+            messagesrobot    : Data,
+            messagerobot     : ''
         });
     };
 
@@ -236,14 +275,16 @@ class ChatRoom extends React.Component {
     };
 
     close = () => {
-        this.setState({
-            mainpart    : false,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                userpro     : true,
+                billpro     : true,
+                albertpro   : true,
+                robotpro    : true,
+                backcolor   : true,
+                newchat     : true
+            }
         });
     };
 
@@ -258,6 +299,9 @@ class ChatRoom extends React.Component {
     signout = () => {
         localStorage.removeItem('username');
         localStorage.removeItem('BackColor');
+        localStorage.removeItem('bill');
+        localStorage.removeItem('albert');
+        localStorage.removeItem('robot');
         this.props.history.push('/');
     };
 
@@ -272,7 +316,6 @@ class ChatRoom extends React.Component {
                                               backColor={this.open} signout={this.signout} chatClick={this.open6}/>
                                 </header>
                                 <div style={{height : 597, borderBottom : 'solid 1px #e4e6e6'}}>
-                                    {/*const {chatHistory, isOpen, isToggle, expandClick, ...other} = props;*/}
                                     <User img={Bill} children={'Bill Gates'} subtitle={'... money money money money ...'}
                                           id={'user1'} isOpen={this.state.dropdownopen2} isToggle={this.toggle2}
                                           profile={this.open3} chatHistory={this.bill}/>
@@ -303,16 +346,27 @@ class ChatRoom extends React.Component {
                             <div className={'maincol8'} hidden={this.state.mainchat}>
                                 <h2 className={'welcome'}>Welcome to Dialogue Chatroom!</h2>
                             </div>
-                            <View title={'Bill Gates'} avatar={Bill} change={this.handleChange} click={this.add}
-                                  value={this.state.messagebill} name={'Bill'} children={<BillChat/>}
+                            <View title={'Bill Gates'} avatar={Bill} change={this.handleChange} click={this.addbill}
+                                  value={this.state.messagebill} name={'messagebill'} children={<Billchat
+                                    children={this.state.messagesbill.map((Data, Index) => {
+                                    return <Read key={Index} children={Data['messagebill']}/>;})}
+                                    />
+                                  }
+
                                   hidden={this.state.billchat}
                                   style={{backgroundColor : localStorage.getItem('BackColor')}}/>
-                            <View title={'Albert Einstein'} avatar={Albert} change={this.handleChange} click={this.add}
-                                  value={this.state.messagealbert} name={'Albert'} children={<AlbertChat/>}
+                            <View title={'Albert Einstein'} avatar={Albert} change={this.handleChange}
+                                  click={this.addalbert} value={this.state.messagealbert} name={'messagealbert'}
+                                  children={<Albertchat children={this.state.messagesalbert.map((Data, Index) => {
+                                      return <Read key={Index} children={Data['messagealbert']}/>;})}/>}
                                   hidden={this.state.albertchat}
                                   style={{backgroundColor : localStorage.getItem('BackColor')}}/>
-                            <View title={'Robot'} avatar={Robot} change={this.handleChange} click={this.add}
-                                  value={this.state.messagerobot} name={'Robot'} children={<RobotChat/>}
+                            <View title={'Robot'} avatar={Robot} change={this.handleChange} click={this.addrobot}
+                                  value={this.state.messagerobot} name={'messagerobot'} children={<Robotchat children={
+                                this.state.messagesrobot.map((Data, Index) => {
+                                return <Read key={Index} children={Data['messagerobot']}/>;
+                                })}
+                                    />}
                                   hidden={this.state.robotchat}
                                   style={{backgroundColor : localStorage.getItem('BackColor')}}/>
                         </Col>
@@ -322,30 +376,3 @@ class ChatRoom extends React.Component {
 }
 
 export default ChatRoom;
-
-// export const Bc = () => {
-//     <BillChat/>
-//     {
-//         Object.keys(this.state.messages).map((Index) => {
-//             return  <Read key={Index} children={this.state.messages[Index]}/>
-//         })
-//     }
-// };
-//
-// export const Ac = () => {
-//     <AlbertChat/>
-//     {
-//         Object.keys(this.state.messages).map((Index) => {
-//             return  <Read key={Index} children={this.state.messages[Index]}/>
-//         })
-//     }
-// };
-//
-// export const Rc = () => {
-//     <RobotChat/>
-//     {
-//         Object.keys(this.state.messages).map((Index) => {
-//             return  <Read key={Index} children={this.state.messages[Index]}/>
-//         })
-//     }
-// };

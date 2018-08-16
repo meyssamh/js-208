@@ -18,15 +18,16 @@ export const Col = (props) => {
 };
 
 export const Button = (props) => {
-    const {type, ...other} = props;
+    const {type, children, ...other} = props;
     const Class = (type !== undefined ? `btn btn-${type}` : 'btn btn-light');
-    return <button {...other} style={{borderRadius : 0}} className={Class} >{props.children}</button>
+    return <button {...other} style={{borderRadius : 0}} className={Class} children={children}/>
 };
 
 export const Button1 = (props) => {
-    const {type, ...other} = props;
+    const {type, children, ...other} = props;
     const Class = (type !== undefined ? `btn btn-${type}` : 'btn btn-light');
-    return <button {...other} style={{borderRadius : 0 , boxShadow : '3px 3px lightblue'}} className={Class} >{props.children}</button>
+    return <button {...other} style={{borderRadius : 0 , boxShadow : '3px 3px lightblue'}} className={Class}
+                   children={children}/>
 };
 
 export const Header = (props) => {
