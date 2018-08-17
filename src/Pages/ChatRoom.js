@@ -5,7 +5,6 @@ import './Main.css';
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
-// import {BillChat, AlbertChat, RobotChat} from '../Components/Chat';
 import Myself from "../Components/Myself";
 import Billchat from "../Components/Billchat";
 import Albertchat from "../Components/Albertchat";
@@ -332,7 +331,7 @@ class ChatRoom extends React.Component {
                             <Profile avatar={Bill} username={'Bill Gates'} email={'bill.gates@msn.com'}
                                      title={'... money money money money ...'} hidden={this.state.billpro}
                                      click={this.close}/>
-                            <Profile avatar={Albert} username={'Albert Einstein'} email={'albert.einstein@caltec.com'}
+                            <Profile avatar={Albert} username={'Albert Einstein'} email={'albert.einstein@princeton.com'}
                                      title={'E = MC-Albert'} hidden={this.state.albertpro} click={this.close}/>
                             <Profile avatar={Robot} username={'Terminator'} email={'T800@skynet.com'}
                                      title={'Hasta la vista, baby'} hidden={this.state.robotpro} click={this.close}/>
