@@ -1,10 +1,10 @@
-###This is a Frontend example of a chat Website.
+### This is a chat SPA example.
 
-##Getting Start
+## Getting Start
 
 For using this application, after downloading and unzipping the codes please run `npm install` or `npm i` in the command line of the root folder so the dependencies get installed.
 
-##Usage
+## Usage
 
 After installing the dependencies you can use `npm start` in the same command line to load the application. The application will load in port 3000 of your localhost if this port is open and not taken, otherwise, the application will load on port 3001 of your localhost.
 

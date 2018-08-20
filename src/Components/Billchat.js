@@ -1,4 +1,7 @@
+// Vendor
 import React from 'react';
+
+// Components
 import {Read, Readother} from './ChatComponents';
 
 class Billchat extends React.Component {

@@ -1,6 +1,9 @@
+// Vendor
 import React from 'react';
-import {Col, Container, MyRow} from './Components';
 import {Link} from 'react-router-dom';
+
+// Components
+import {Col, Container, MyRow} from './Components';
 
 export const Footer = () => {
     return  <footer className={'footer'}>

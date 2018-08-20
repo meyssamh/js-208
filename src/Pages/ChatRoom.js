@@ -1,15 +1,21 @@
+// Vendor
 import React from 'react';
+
+// Components
 import {Col, MyRow} from '../Components/Components';
 import {BackColor, MainUser, Newchat, Profile, Read, User, UserProfile, View} from '../Components/ChatComponents';
+import Billchat from '../Components/Billchat';
+import Albertchat from '../Components/Albertchat';
+import Robotchat from '../Components/Robotchat';
+
+// Css
 import './Main.css';
+
+// Component-Assets
 import Bill from '../Components/BillGates';
 import Albert from '../Components/AlbertEinstein';
 import Robot from '../Components/Robot';
-import Myself from "../Components/Myself";
-import Billchat from "../Components/Billchat";
-import Albertchat from "../Components/Albertchat";
-import Robotchat from "../Components/Robotchat";
-
+import Myself from '../Components/Myself';
 
 
 class ChatRoom extends React.Component {
@@ -127,74 +133,56 @@ class ChatRoom extends React.Component {
     };
 
     open = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : false,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                backcolor   : !prevState.backcolor
+            }
         });
     };
 
     open2 = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : false,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                userpro     : !prevState.userpro
+            }
         });
     };
 
     open3 = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : true,
-            billpro     : false,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                billpro     : !prevState.billpro
+            }
         });
     };
 
     open4 = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : false,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                albertpro   : !prevState.albertpro
+            }
         });
     };
 
     open5 = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : false,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                robotpro    : !prevState.robotpro
+            }
         });
     };
 
     open6 = () => {
-        this.setState({
-            mainpart    : true,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : false
+        this.setState(prevState => {
+            return {
+                mainpart    : !prevState.mainpart,
+                newchat     : !prevState.newchat
+            }
         });
     };
 
@@ -226,50 +214,41 @@ class ChatRoom extends React.Component {
     };
 
     show1 = () => {
-        this.setState({
-            mainchat    : true,
-            billchat    : false,
-            albertchat  : true,
-            robotchat   : true,
-            mainpart    : false,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainchat    : true,
+                billchat    : false,
+                albertchat  : true,
+                robotchat   : true,
+                mainpart    : !prevState.mainpart,
+                newchat     : !prevState.newchat
+            }
         });
     };
 
     show2 = () => {
-        this.setState({
-            mainchat    : true,
-            billchat    : true,
-            albertchat  : false,
-            robotchat   : true,
-            mainpart    : false,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainchat    : true,
+                billchat    : true,
+                albertchat  : false,
+                robotchat   : true,
+                mainpart    : !prevState.mainpart,
+                newchat     : !prevState.newchat
+            }
         });
     };
 
     show3 = () => {
-        this.setState({
-            mainchat    : true,
-            billchat    : true,
-            albertchat  : true,
-            robotchat   : false,
-            mainpart    : false,
-            userpro     : true,
-            billpro     : true,
-            albertpro   : true,
-            robotpro    : true,
-            backcolor   : true,
-            newchat     : true
+        this.setState(prevState => {
+            return {
+                mainchat    : true,
+                billchat    : true,
+                albertchat  : true,
+                robotchat   : false,
+                mainpart    : !prevState.mainpart,
+                newchat     : !prevState.newchat
+            }
         });
     };
 
@@ -351,7 +330,6 @@ class ChatRoom extends React.Component {
                                     return <Read key={Index} children={Data['messagebill']}/>;})}
                                     />
                                   }
-
                                   hidden={this.state.billchat}
                                   style={{backgroundColor : localStorage.getItem('BackColor')}}/>
                             <View title={'Albert Einstein'} avatar={Albert} change={this.handleChange}

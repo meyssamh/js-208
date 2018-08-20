@@ -1,9 +1,14 @@
+// Vendor
 import React from 'react';
+
+// Components
 import {Nav} from '../Components/Components';
-import './Main.css';
 import Logo from '../Components/Logo';
 import Logo1 from '../Components/Logo1';
 import {Footer} from '../Components/Footer';
+
+// Css
+import './Main.css';
 
 class Home extends React.Component {
 

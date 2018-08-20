@@ -1,10 +1,14 @@
+// Vendor
 import React from 'react';
-import './Main.css';
-import {Button1, Col, Info, Nav} from '../Components/Components';
 import {Link} from 'react-router-dom';
+
+// Components
+import {Button1, Col, Info, Nav} from '../Components/Components';
 import Logo from '../Components/Logo1';
 import {Footer} from '../Components/Footer';
 
+// Css
+import './Main.css';
 
 class SignUp extends React.Component {
 

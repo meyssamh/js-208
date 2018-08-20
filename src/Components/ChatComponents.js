@@ -1,16 +1,21 @@
+// Vendor
 import React from 'react';
 import {Row, Avatar, Title, Subtitle, Message, Bubble, MessageText, MessageList} from '@livechat/ui-kit';
+import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
+
+// Components
+import {MyRow} from './Components';
+
+// Component-Assets
 import Chatlogo from './Chatlogo';
 import More from './More';
 import Myself from './Myself';
 import Expand from './Expand';
-import {MyRow} from './Components';
 import Send from './Send';
-import Clear from "./Clear";
-import {Dropdown, DropdownMenu, DropdownToggle} from 'reactstrap';
-import Robot from "./Robot";
-import Albert from "./AlbertEinstein";
-import Bill from "./BillGates";
+import Clear from './Clear';
+import Robot from './Robot';
+import Albert from './AlbertEinstein';
+import Bill from './BillGates';
 
 
 export const Img = (props) => {
