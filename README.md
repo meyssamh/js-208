@@ -1,4 +1,4 @@
-### This is a chat SPA example.
+### This is a chat-SPA example.
 
 ## Getting Start
 
