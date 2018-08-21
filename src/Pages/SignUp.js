@@ -55,21 +55,13 @@ class SignUp extends React.Component {
     };
 
     whenScroll = () => {
-        let supportPageOffset = window.pageXOffset !== undefined;
-        let Compact = ((document.compatMode || '') === 'Compact');
-        let scroll = {
-            y: supportPageOffset ? window.pageYOffset :
-                Compact ? document.documentElement.scrollTop :
-                    document.body.scrollTop
-        };
-
         if(this._isMounted === true) {
-            if (scroll.y > 50) {
+            if (window.scrollY > 50) {
                 this.setState({
                     nav1Hidden: false
                 });
             }
-            if (scroll.y <= 50) {
+            if (window.scrollY <= 50) {
                 this.setState({
                     nav1Hidden: true
                 });
@@ -115,7 +107,7 @@ class SignUp extends React.Component {
                                     ERROR: Your password and confirmation password do not match!
                                 </div>
                                 <br/>
-                                <Button1 type={'primary'} children={'Sign up'} onClick={this.sign}/>
+                                <Button1 type={'button'} typeBtn={'primary'} children={'Sign up'} onClick={this.sign}/>
                             </form>
                         </Col>
                     </div>

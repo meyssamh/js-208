@@ -25,8 +25,8 @@ export const Button = (props) => {
 };
 
 export const Button1 = (props) => {
-    const {type, children, ...other} = props;
-    const Class = (type !== undefined ? `btn btn-${type}` : 'btn btn-light');
+    const {typeBtn, children, ...other} = props;
+    const Class = (typeBtn !== undefined ? `btn btn-${typeBtn}` : 'btn btn-light');
     return <button {...other} style={{borderRadius : 0 , boxShadow : '3px 3px lightblue'}} className={Class}
                    children={children}/>
 };
