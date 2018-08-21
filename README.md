@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ### This is a chat-SPA example.
-=======
-### This is a Frontend example of a chat Website.
->>>>>>> 571bdf8e0dd706f140816e0313f62fdea6efbe95
 
 ## Getting Start
 
